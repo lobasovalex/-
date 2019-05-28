@@ -1,37 +1,38 @@
+
 #include "stdafx.h"
 #include <iostream>
 using namespace std;
-узел структуры {
+struct node {
  int info;
- узел* левый, * правый;
+ node* left, *right;
 };
 //создание дерева
-void createtree (node * * tree) {
- * tree = NULL;
+void createtree(node** tree) {
+ *tree = NULL;
 }
 //проверка на пустоту
-void isEmpty (node * * tree) {
- if ((*tree) == NULL) cout << "Дерево пустое \n";
- else cout << "Дерево не пустое \n";
+void isEmpty(node** tree) {
+	if ((*tree) == NULL) cout << "Дерево пустое \n";
+	else cout << "Дерево не пустое \n";
 }
 //добавление эл
-void push(int a, node * * tree) {
- if ((*tree) = = NULL) {
- (*tree) = новый узел;
- (*tree) - > info = a;
- (*tree) - >left = (*tree) - >>right = NULL;
- возвращаться;
+void push(int a, node** tree) {
+	if ((*tree) == NULL) {
+		(*tree) = new node;
+		(*tree)->info = a;
+		(*tree)->left = (*tree)->right = NULL;
+		return;
 	}
- если (a > (*tree)->>info) нажмите (a, &(*tree) - >>>right);
- else push (a, &(*tree) - > left);
+	if (a > (*tree)->info) push(a, &(*tree)->right);
+	else push(a, &(*tree)->left);
 }
 //удаление дерева
-void delet(node * tree, node* * trees) {
- если (дерево != НЕДЕЙСТВИТЕЛЬНЫЙ) {
- delet (tree - > слева, деревья);
- delet (tree - > справа, деревья);
- удалить дерево;
- * деревья = NULL;
+void delet(node *tree, node** trees) {
+	if (tree != NULL) {
+		delet(tree->left, trees);
+		delet(tree->right, trees);
+		delete tree;
+		*trees = NULL;
 	}
 
 }
@@ -86,40 +87,40 @@ int main() {
 	while (1) {
 		cout << "1 - Создать дерево\n";
 	cout << "2 - Добавить элемент в дерево\n";
- cout << "3 - Вывести всё дерево\n";
- cout << "4 - Проверить пустое ли дерево\n";
- cout << "5 - Удалить дерево \n";
- cout << "6 - Удалить элемент дерева \n";
- cout << "0 - Выйти \n";
- cout << "\nВведите нужный пункт: ";
- cin >>> n;
- переключатель (n) {
- случай 1: {
- createtree (&дерево);
- cout << "Дерево создано \n";
- система ("пауза");
- система ("cls");
- ломать;
+	cout << "3 - Вывести всё дерево\n";
+	cout << "4 - Проверить пустое ли дерево\n";
+	cout << "5 - Удалить дерево \n";
+	cout << "6 - Удалить элемент дерева \n";
+	cout << "0 - Выйти \n";
+	cout << "\nВведите нужный пункт: ";
+	cin >> n;
+		switch (n) {
+		case 1: {
+			createtree(&tree);
+			cout << "Дерево создано \n";
+			system("pause");
+			system("cls");
+			break;
 		}
- случай 2: {
- cout << "Введите число ";
- cin >>> s;
- push (s, &tree);
- система ("пауза");
- система ("cls");
- ломать;
+		case 2: {
+			cout << "Введите число ";
+			cin >> s;
+			push(s, &tree);
+			system("pause");
+			system("cls");
+			break;
 		}
- случай 3: {
- cout << "Ваше дерево:\n";
- печать (дерево, 0);
- система ("пауза");
- система ("cls");
- ломать;
+		case 3: {
+			cout << "Ваше дерево:\n";
+			print(tree, 0);
+			system("pause");
+			system("cls");
+			break;
 		}
- случай 4: {
- isEmpty (&дерево);
- система ("пауза");
- система ("cls");
+		case 4: {
+			isEmpty(&tree);
+			system("pause");
+			system("cls");
 			break; 
 		}
 		
